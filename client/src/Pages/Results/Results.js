@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ResultsPage = ({ history, results }) => {
+const ResultsPage = ({ history, results, setReadingList }) => {
 
     const renderList = () => {
         return (
@@ -14,7 +14,12 @@ const ResultsPage = ({ history, results }) => {
                         <div>Title: {!title ? "N/A" : title}</div>
                         <div>Author: {!authors ? "N/A" : authors.map(author => author)} </div>
                         <div>Publisher: {!publisher ? "N/A" : publisher}</div>
-                    </div>
+                        <button onClick={() => {
+                            setReadingList(prevState => [...prevState, { title, authors, publisher }]);
+                        }}>
+                            Add to reading list
+                        </button>
+                    </div >
                 )
             })
         )

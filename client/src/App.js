@@ -6,13 +6,14 @@ import ResultsPage from './Pages/Results/Results';
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
+  const [readingList, setReadingList] = useState([]);
 
   return (
     <div>
       <Router>
         <Switch>
           <Route exact path="/" render={props => <HomePage {...props} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setResults={setResults} />} />
-          <Route exact path="/results" render={props => <ResultsPage {...props} results={results} />} />
+          <Route exact path="/results" render={props => <ResultsPage {...props} setReadingList={setReadingList} results={results} />} />
         </Switch>
       </Router>
     </div>

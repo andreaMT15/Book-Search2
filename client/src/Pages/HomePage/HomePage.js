@@ -2,7 +2,6 @@ import React from 'react';
 import { getData } from '../../lib/apiClient';
 
 const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
-
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
     };

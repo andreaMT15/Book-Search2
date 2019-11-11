@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const getData = async (searchTerm) => {
-    const url = "https://www.googleapis.com/books/v1/volumes?q="
-    const key = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
+const url = "https://www.googleapis.com/books/v1/volumes";
+const apiKey = process.env.REACT_APP_API_KEY;
 
+const getData = async (searchTerm) => {
     try {
-        const response = await axios.get(`${url}${searchTerm}key=${key}&maxResults=5`);
+        const response = await axios.get(`${url}?q=${searchTerm}&key=${apiKey}&maxResults=5`);
         const data = response.data.items;
         return data;
     }
@@ -14,3 +14,6 @@ export const getData = async (searchTerm) => {
     }
 };
 
+
+
+export { getData };
