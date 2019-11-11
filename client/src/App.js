@@ -12,8 +12,8 @@ const App = () => {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/" render={props => <HomePage {...props} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setResults={setResults} />} />
-          <Route exact path="/results" render={props => <ResultsPage {...props} setReadingList={setReadingList} results={results} />} />
+          <Route exact path="/" render={props => <HomePage {...props} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setResults={setResults} results={results} />} />
+          <Route exact path="/results" render={props => <ResultsPage {...props} setReadingList={setReadingList} results={results} readingList={readingList} />} />
         </Switch>
       </Router>
     </div>

@@ -10,10 +10,9 @@ const getData = async (searchTerm) => {
         return data;
     }
     catch (err) {
-        throw err;
+        const error = "error";
+        return error;
     }
 };
-
-
 
 export { getData };
