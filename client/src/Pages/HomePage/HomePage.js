@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { getData } from '../../lib/apiClient';
+import './HomePage.css';
 
-const HomePage = ({ history, searchTerm, setSearchTerm, setResults, results }) => {
+const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
     const [error, setError] = useState('');
 
     const handleChange = (event) => {
@@ -32,11 +33,17 @@ const HomePage = ({ history, searchTerm, setSearchTerm, setResults, results }) =
 
     return (
         <div className="homepage-wrapper">
-            <form type="submit">
-                <input id="search-input" type="text" value={searchTerm} placeholder="Search for a book title" onChange={handleChange} />
-                <button id="submit-btn" onClick={handleSubmit}>Submit</button>
-            </form>
-            <div className="error">{error}</div>
+
+            <div className="form-wrapper">
+                <form className="search-input" type="submit">
+                    <input className="search" type="text" name="search-input" value={searchTerm} placeholder="Search for a book title" onChange={handleChange} />
+                    <button id="submit-btn" onClick={handleSubmit}>Submit</button>
+                </form>
+            </div>
+            <div className="error-wrapper">
+                <div className="error">{error}</div>
+            </div>
+
         </div>
     );
 };

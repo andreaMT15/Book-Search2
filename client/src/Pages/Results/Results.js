@@ -1,7 +1,9 @@
 import React from 'react';
+import './Results.css';
 
 const ResultsPage = ({ history, results, readingList, setReadingList }) => {
     let resultsArr = [];
+    console.log(resultsArr);
     const setResults = () => {
         return (
             results.forEach(book => {
@@ -33,15 +35,17 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
         setResults();
         return resultsArr.map(book => {
             return (
-                <div key={book.id}>
-                    <div>Title: {book.title}</div>
-                    <div>Author: {book.authors.map(author => author)} </div>
-                    <div>Publisher: {book.publisher}</div>
-                    <button onClick={() => {
-                        setReadingList(prevState => [...prevState, { id: book.id, title: book.title, authors: book.authors, publisher: book.publisher }]);
-                    }}>
-                        Add to reading list
+                <div className="card-wrapper" key={book.id}>
+                    <div className="card-content">
+                        <div>Title: {book.title}</div>
+                        <div>Author: {book.authors === 'N/A' ? book.authors : book.authors.map(author => author)} </div>
+                        <div>Publisher: {book.publisher}</div>
+                        <button className="add-btn" onClick={() => {
+                            setReadingList(prevState => [...prevState, { id: book.id, title: book.title, authors: book.authors, publisher: book.publisher }]);
+                        }}>
+                            Add to reading list
                         </button>
+                    </div>
                 </div >
             );
         });
@@ -50,21 +54,33 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
     const renderReadingList = () => {
         return readingList.map(item => {
             return (
-                <div key={item.id}>
-                    <div>Title: {item.title}</div>
-                    <div>Author: {item.authors.map(author => author)} </div>
-                    <div>Publisher: {item.publisher}</div>
+                <div className="card-wrapper" key={item.id}>
+                    <div className="card-content">
+                        <div>Title: {item.title}</div>
+                        <div>Author: {item.authors === "N/A" ? item.authors : item.authors.map(author => author)} </div>
+                        <div>Publisher: {item.publisher}</div>
+                    </div>
                 </div>
             );
         });
     };
 
     return (
-        <div>
-            <div>{renderList()}</div>
-            <button onClick={() => { history.push('/') }}>Search Another Title</button>
-            <div>Reading List</div>
-            <div>{renderReadingList()}</div>
+        <div className="result-wrapper">
+            <div className="result-list">
+                <div className="header sarch-header">
+                    <div>Search Resulsts</div>
+                </div>
+                {renderList()}
+            </div>
+            <div className="reading-list-wrapper">
+                <div className=" header reading-list-header">
+                    <div>My Reading List</div>
+                    <button className="search-btn" onClick={() => { history.push('/') }}>Search Another Title</button>
+                </div>
+                <div className="reading-list">{renderReadingList()}</div>
+            </div>
+
         </div>
     );
 };
