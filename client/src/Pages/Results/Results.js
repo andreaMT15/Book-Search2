@@ -3,7 +3,6 @@ import './Results.css';
 
 const ResultsPage = ({ history, results, readingList, setReadingList }) => {
     let resultsArr = [];
-    console.log(resultsArr);
     const setResults = () => {
         return (
             results.forEach(book => {
