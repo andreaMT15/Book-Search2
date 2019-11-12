@@ -1,5 +1,5 @@
 {
-  "name": "Book Search",
+  "name": "book-search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,5 +29,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^6.10.1",
+    "@testing-library/jest-dom": "^4.2.3",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "^3.2.1",
+    "jest": "^24.9.0"
   }
 }

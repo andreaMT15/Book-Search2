@@ -7,7 +7,9 @@ const getData = async (searchTerm) => {
     try {
         const response = await axios.get(`${url}?q=${searchTerm}&key=${apiKey}&maxResults=5`);
         const data = response.data.items;
+        console.log("Data:", data);
         return data;
+
     }
     catch (err) {
         const error = "error";

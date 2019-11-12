@@ -35,7 +35,7 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
         setResults();
         return resultsArr.map(book => {
             return (
-                <div className="card-wrapper" key={book.id}>
+                <div className="card-wrapper" data-testid="results" key={book.id}>
                     <div className="card-content">
                         <div>Title: {book.title}</div>
                         <div>Author: {book.authors === 'N/A' ? book.authors : book.authors.map(author => author)} </div>
@@ -67,9 +67,9 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
 
     return (
         <div className="result-wrapper">
-            <div className="result-list">
+            <div data-testid="result-list" className="result-list">
                 <div className="header sarch-header">
-                    <div>Search Resulsts</div>
+                    <div>Search Results</div>
                 </div>
                 {renderList()}
             </div>

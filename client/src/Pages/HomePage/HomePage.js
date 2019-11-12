@@ -32,19 +32,18 @@ const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
 
 
     return (
-        <div className="homepage-wrapper">
-
+        <div className="homepage-wrapper" data-testid="home">
             <div className="form-wrapper">
                 <form className="search-input" type="submit">
                     <input className="search" type="text" name="search-input" value={searchTerm} placeholder="Search for a book title" onChange={handleChange} />
-                    <button id="submit-btn" onClick={handleSubmit}>Submit</button>
+                    <button id="submit-btn" data-testid="search-btn" onClick={handleSubmit}>Submit</button>
                 </form>
             </div>
             <div className="error-wrapper">
                 <div className="error">{error}</div>
             </div>
 
-        </div>
+        </div >
     );
 };
 
