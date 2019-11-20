@@ -2,7 +2,7 @@ import React from 'react';
 import './Results.css';
 
 const ResultsPage = ({ history, results, readingList, setReadingList }) => {
-    const setResults = () => {
+    const getResults = () => {
         return (results.map(book => {
             return (
                 {
@@ -14,8 +14,8 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
         }));
     };
 
-    const check = () => {
-        const volumeInfo = setResults();
+    const getResultList = () => {
+        const volumeInfo = getResults();
         return (
             volumeInfo.map(result => {
                 return ({
@@ -28,14 +28,20 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
     };
 
 
-    const renderList = () => {
-        const books = check();
+    const renderResults = () => {
+        const books = getResultList();
         return books.map(book => {
             return (
                 <div className="card-wrapper" data-testid="results" key={book.id}>
                     <div className="card-content">
                         <div>Title: {book.title}</div>
-                        <div>Author: {book.authors === 'N/A' ? book.authors : book.authors.map(author => author)} </div>
+                        <div>
+                            Author: {book.authors === 'N/A' ? book.authors : book.authors.map(author => {
+                                return (
+                                    `${author} `
+                                )
+                            })}
+                        </div>
                         <div>Publisher: {book.publisher}</div>
                         <button className="add-btn" onClick={() => {
                             setReadingList(prevState => [...prevState, { id: book.id, title: book.title, authors: book.authors, publisher: book.publisher }]);
@@ -43,7 +49,7 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
                             Add to reading list
                         </button>
                     </div>
-                </div >
+                </div>
             );
         });
     };
@@ -68,7 +74,7 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
                 <div className="header sarch-header">
                     <div>Search Results</div>
                 </div>
-                {renderList()}
+                {renderResults()}
             </div>
             <div className="reading-list-wrapper">
                 <div className=" header reading-list-header">
