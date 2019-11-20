@@ -2,37 +2,35 @@ import React from 'react';
 import './Results.css';
 
 const ResultsPage = ({ history, results, readingList, setReadingList }) => {
-    let resultsArr = [];
     const setResults = () => {
-        return (
-            results.forEach(book => {
-                let id = book.id
-                let title = book.volumeInfo.title;
-                let authors = book.volumeInfo.authors;
-                let publisher = book.volumeInfo.publisher;
-
-                if (title === undefined) {
-                    title = "N/A";
-                } else if (authors === undefined) {
-                    authors = "N/A";
-                } else if (publisher === undefined) {
-                    publisher = "N/A"
-                }
-
-                let resultsObj = {
-                    id,
-                    title,
-                    authors,
-                    publisher
-                };
-                resultsArr.push(resultsObj);
-            })
-        );
+        return (results.map(book => {
+            return (
+                {
+                    id: book.id,
+                    title: book.volumeInfo.title,
+                    authors: book.volumeInfo.authors,
+                    publisher: book.volumeInfo.publisher,
+                });
+        }));
     };
 
+    const check = () => {
+        const volumeInfo = setResults();
+        return (
+            volumeInfo.map(result => {
+                return ({
+                    id: result.id,
+                    title: result.title === undefined ? 'N/A' : result.title,
+                    authors: result.authors === undefined ? 'N/A' : result.authors,
+                    publisher: result.publisher === undefined ? 'N/A' : result.publisher
+                });
+            }));
+    };
+
+
     const renderList = () => {
-        setResults();
-        return resultsArr.map(book => {
+        const books = check();
+        return books.map(book => {
             return (
                 <div className="card-wrapper" data-testid="results" key={book.id}>
                     <div className="card-content">
@@ -79,7 +77,6 @@ const ResultsPage = ({ history, results, readingList, setReadingList }) => {
                 </div>
                 <div className="reading-list">{renderReadingList()}</div>
             </div>
-
         </div>
     );
 };

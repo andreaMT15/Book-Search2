@@ -3,30 +3,36 @@ import { getData } from '../../lib/apiClient';
 import './HomePage.css';
 
 const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
+    let errorMessage = "Please search for a valid book title.";
 
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
-    const handleSubmit = async (event) => {
+    const validate = async () => {
+        const bookData = await getData(searchTerm);
+        console.log(bookData);
+        if (bookData === undefined) {
+            errorMessage = "There were no results for that title. Please search for another title.";
+            setError(errorMessage);
+        } else if (bookData === "error") {
+            errorMessage = "Oops something went wrong!"
+            setError(errorMessage);
+        } else {
+            setResults(bookData);
+            setSearchTerm('');
+            setError('');
+            history.push('/results');
+        };
+    }
+
+    const handleSubmit = (event) => {
         event.preventDefault();
-        let errorMessage = "Please search for a valid book title."
         if (!searchTerm) {
             setError(errorMessage);
         } else {
-            const bookData = await getData(searchTerm);
-            if (bookData === undefined) {
-                setError(errorMessage);
-            } else if (bookData === "error") {
-                errorMessage = "Oops something went wrong!"
-                setError(errorMessage);
-            } else {
-                setResults(bookData);
-                setSearchTerm('');
-                setError('');
-                history.push('/results');
-            };
+            validate();
         };
     };
 
@@ -39,10 +45,11 @@ const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
                     <button id="submit-btn" data-testid="search-btn" onClick={handleSubmit}>Submit</button>
                 </form>
             </div>
-            <div className="error-wrapper">
-                <div className="error">{error}</div>
-            </div>
-
+            {!error ? "" :
+                <div className="error-wrapper">
+                    <div className="error">{error}</div>
+                </div>
+            }
         </div >
     );
 };
