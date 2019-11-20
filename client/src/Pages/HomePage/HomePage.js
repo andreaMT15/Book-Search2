@@ -12,7 +12,6 @@ const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
 
     const validate = async () => {
         const bookData = await getData(searchTerm);
-        console.log(bookData);
         if (bookData === undefined) {
             errorMessage = "There were no results for that title. Please search for another title.";
             setError(errorMessage);

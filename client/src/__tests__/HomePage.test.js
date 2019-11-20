@@ -7,6 +7,7 @@ import HomePage from "../Pages/HomePage/HomePage";
 afterEach(cleanup);
 
 test('it returns data', async () => {
+    const url = '/books';
     const { getByTestId } = render(
         <div>
             <HomePage />
@@ -22,5 +23,7 @@ test('it returns data', async () => {
         }
     }]);
 
-    fireEvent.click(getByTestId('search-btn'));
+
+    fireEvent.submit(getByTestId('search-btn'));
+    expect(axiosMock.get).toHaveBeenCalledWith(url);
 });
