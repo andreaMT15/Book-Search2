@@ -4,7 +4,7 @@
 
 This app is designed to use the Google Books API to obtain information for a particular book title that is searched by the user. Once the user has searched for a book title, the app will then display a list of results which will include the book title, author, publishing company. The user will also have the option to add the book results to a reading list.
 
-<img width="1437" alt="Screen Shot 2019-11-11 at 5 40 53 PM" src="https://user-images.githubusercontent.com/44379703/68637723-212eb900-04c5-11ea-9553-d6497bd3b5d5.png">
+<img width="1436" alt="Screen Shot 2019-11-21 at 5 20 10 PM" src="https://user-images.githubusercontent.com/44379703/69384927-5f756680-0c83-11ea-9314-be3f35bfdd3c.png">
 <img width="1438" alt="Screen Shot 2019-11-11 at 5 41 07 PM" src="https://user-images.githubusercontent.com/44379703/68637701-0fe5ac80-04c5-11ea-97b1-4159279ca8d0.png">
 <img width="1428" alt="Screen Shot 2019-11-11 at 5 41 17 PM" src="https://user-images.githubusercontent.com/44379703/68637702-11af7000-04c5-11ea-8954-54bb588345bb.png">
 
