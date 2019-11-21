@@ -4,7 +4,7 @@ import './HomePage.css';
 
 const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
     const [error, setError] = useState(null);
-    let errorMessage = "Please search for a valid book title.";
+    let errorMessage = "Search cannot be empty. Please search for a book title.";
 
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
