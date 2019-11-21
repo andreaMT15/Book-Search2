@@ -18,16 +18,6 @@ const App = () => {
   const [results, setResults] = useState([]);
   const [readingList, setReadingList] = useStateWithLocalStorage('list');
 
-  // function usePersistedState(key, defaultValue) {
-  //   // const [state, setState] = React.useState(
-  //   //     () => JSON.parse(localStorage.getItem(key)) || defaultValue
-  //   // );
-  //   useEffect(() => {
-  //     localStorage.setItem('readingList', JSON.stringify(readingList));
-  //   }, ['readingList', readingList]);
-  //   return [readingList, setReadingList];
-  // };
-
   return (
     <div>
       <Router>

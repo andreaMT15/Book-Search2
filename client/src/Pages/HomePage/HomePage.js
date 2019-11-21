@@ -10,13 +10,12 @@ const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
         setSearchTerm(event.target.value);
     };
 
-    const validate = async () => {
-        const bookData = await getData(searchTerm);
+    const validate = (bookData) => {
         if (bookData === undefined) {
             errorMessage = "There were no results for that title. Please search for another title.";
             setError(errorMessage);
         } else if (bookData === "error") {
-            errorMessage = "Oops something went wrong!"
+            errorMessage = "Oops something went wrong! Try again."
             setError(errorMessage);
         } else {
             setResults(bookData);
@@ -26,12 +25,13 @@ const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
         };
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (!searchTerm) {
             setError(errorMessage);
         } else {
-            validate();
+            const bookData = await getData(searchTerm);
+            validate(bookData);
         };
     };
 
@@ -46,7 +46,7 @@ const HomePage = ({ history, searchTerm, setSearchTerm, setResults }) => {
             </div>
             {!error ? "" :
                 <div className="error-wrapper">
-                    <div className="error">{error}</div>
+                    <div data-testid="error" className="error">{error}</div>
                 </div>
             }
         </div >
